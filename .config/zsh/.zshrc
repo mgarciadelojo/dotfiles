@@ -16,13 +16,13 @@ DISABLE_UPDATE_PROMPT="true"
 # Which plugins would you like to load?
 plugins=(git nvm)
 
+# Custom env variables
+[[ -f $ZDOTDIR/custom.zshenv ]] && source $ZDOTDIR/custom.zshenv
+
 # Start Oh My ZSH
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# Custom env variables
-[[ -f $ZDOTDIR/custom.zshenv ]] && source $ZDOTDIR/custom.zshenv
 
 # Node Version Manager
 export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
