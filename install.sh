@@ -18,7 +18,7 @@ do_it() {
     set_cache_folder
     link_zshenv
     install_common_dependencies
-    bye
+    activate_zsh
 }
 
 clone_ohmyzsh() {
@@ -90,14 +90,14 @@ install_common_dependencies() {
     fi
 }
 
-change_to_zsh() {
-    if [ "$(shell)" != "zsh" ]; then
+activate_zsh() {
+    if [ "$(basename -- "$SHELL")" != "zsh" ]; then
         echo "Changing your default shell to zsh..."
         ensure as_root chsh -s $(grep "zsh$" /etc/shells | tail -1) "$USER"
     fi
-}
 
-bye() {
+    echo
+
     echo "ZSH Config is successfully installed!"
     echo "Log out and log in again to start using this config"
 }
