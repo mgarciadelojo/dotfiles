@@ -94,7 +94,6 @@ install_common_dependencies() {
     echo "Installing Common Dependencies..."
 
     NVM_DIR=$XDG_CONFIG_HOME/.nvm
-    GVM_DIR=$XDG_CONFIG_HOME/.gvm
 
     if git_repo "$NVM_DIR"; then
         echo "Already a git repository: '$NVM_DIR'"
@@ -107,14 +106,6 @@ install_common_dependencies() {
         cd $pwd
 
         echo "NVM ${latesttag} installed!"
-    fi
-
-    if git_repo "$GVM_DIR"; then
-        echo "Already a git repository: '$GVM_DIR'"
-    else
-        ensure git clone https://github.com/nvm-sh/nvm.git $GVM_DIR
-
-        echo "GVM installed!"
     fi
 }
 
