@@ -28,7 +28,3 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Go version Manager
-export GVM_DIR="$XDG_CONFIG_HOME/.gvm"
-[[ -s "$GVM_DIR/scripts/gvm" ]] && source "$GVM_DIR/scripts/gvm"
