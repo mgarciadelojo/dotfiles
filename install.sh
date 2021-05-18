@@ -133,7 +133,8 @@ activate_zsh() {
 
 need() {
     if ! command -v "$1" > /dev/null 2>&1; then
-        die "need '$1' (command not found)"
+        echo "need '$1' (command not found)"
+        exit 1
     fi
 }
 
