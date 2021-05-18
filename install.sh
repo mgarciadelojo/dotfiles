@@ -68,7 +68,7 @@ copy_dotfiles() {
 		--exclude "brew.sh" \
 		--exclude "install.sh" \
 		--exclude "README.md" \
-		-avh --no-perms $DOTFILES ~;
+		-avh --no-perms $DOTFILES/.[^.]* ~
 }
 
 set_cache_folder() {
@@ -122,7 +122,7 @@ activate_zsh() {
     if [ "$(basename -- "$SHELL")" != "zsh" ]; then
         echo
         echo "Changing your default shell to zsh..."
-        ensure as_root chsh -s $(grep "zsh$" /etc/shells | tail -1) "$USER"
+        ensure as_root chsh -s $(which zsh) $(whoami)
     fi
 
     echo
