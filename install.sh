@@ -10,6 +10,7 @@ mkdir -p $XDG_CACHE_HOME
 
 ZDOTDIR=$XDG_CONFIG_HOME/zsh
 ZSH=$XDG_DATA_HOME/oh-my-zsh
+DOTFILES=$XDG_DATA_HOME/dotfiles
 ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 
 do_it() {
@@ -34,6 +35,19 @@ clone_ohmyzsh() {
     fi
 }
 
+clone_dotfiles() {
+    echo "Installing DotFiles..."
+
+    DOTFILES_REPO="https://github.com/mgarciadelojo/dotfiles.git"
+
+    if git_repo "$DOTFILES"; then
+        echo "Already a git repository: '$DOTFILES'"
+    else
+        ensure mkdir -p "$DOTFILES"
+        ensure git clone --depth=1 "$DOTFILES_REPO" "$DOTFILES"
+    fi
+}
+
 copy_dotfiles() {
 	rsync \
         --exclude ".git/" \
@@ -42,7 +56,7 @@ copy_dotfiles() {
 		--exclude "brew.sh" \
 		--exclude "install.sh" \
 		--exclude "README.md" \
-		-avh --no-perms . ~;
+		-avh --no-perms $DOTFILES ~;
 }
 
 set_cache_folder() {
