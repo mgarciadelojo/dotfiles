@@ -27,3 +27,10 @@ Run the following command in your terminal to install:
 ``` bash
 $ bash <(curl -sSf https://raw.githubusercontent.com/mgarciadelojo/dotfiles/master/install.sh)
 ```
+
+## Brew dependencies on Mac
+Just run the below command to install all the dependencies for Mac Os X:
+
+``` bash
+$ bash <(curl -sSf https://raw.githubusercontent.com/mgarciadelojo/dotfiles/master/brew.sh)
+```
