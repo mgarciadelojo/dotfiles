@@ -14,6 +14,7 @@ DOTFILES=$XDG_DATA_HOME/dotfiles
 ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 
 do_it() {
+    echo "Checking all the requirements are met..."
     need git
     need zsh
     need mkdir
@@ -30,6 +31,7 @@ do_it() {
 }
 
 clone_ohmyzsh() {
+    echo
     echo "Installing Oh My Zsh..."
 
     OH_MY_ZSH_REPO="https://github.com/robbyrussell/oh-my-zsh.git"
@@ -43,6 +45,7 @@ clone_ohmyzsh() {
 }
 
 clone_dotfiles() {
+    echo
     echo "Installing DotFiles..."
 
     DOTFILES_REPO="https://github.com/mgarciadelojo/dotfiles.git"
@@ -56,6 +59,8 @@ clone_dotfiles() {
 }
 
 copy_dotfiles() {
+    echo
+    echo "Copying all the config files..."
 	rsync \
         --exclude ".git/" \
 		--exclude ".DS_Store" \
@@ -78,12 +83,14 @@ link_zshenv() {
 	ZSHENV="$(readlink -sm "$ZDOTDIR/.zshenv")"
 
 	if not_linked "$HOME/.zshenv" "$ZSHENV"; then
+        echo
 		echo "Creating symlink from '$HOME/.zshenv' to '$ZDOTDIR/.zshenv'..."
 		ensure ln -fs "$ZSHENV" "$HOME/.zshenv"
 	fi
 }
 
 install_common_dependencies() {
+    echo
     echo "Installing Common Dependencies..."
 
     NVM_DIR=$XDG_CONFIG_HOME/.nvm
@@ -113,6 +120,7 @@ install_common_dependencies() {
 
 activate_zsh() {
     if [ "$(basename -- "$SHELL")" != "zsh" ]; then
+        echo
         echo "Changing your default shell to zsh..."
         ensure as_root chsh -s $(grep "zsh$" /etc/shells | tail -1) "$USER"
     fi
