@@ -15,6 +15,7 @@ ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 
 do_it() {
     clone_ohmyzsh
+    clone_dotfiles
     copy_dotfiles
     set_cache_folder
     link_zshenv
