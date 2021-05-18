@@ -14,6 +14,12 @@ DOTFILES=$XDG_DATA_HOME/dotfiles
 ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 
 do_it() {
+    need git
+    need zsh
+    need mkdir
+    need chsh
+    need ln
+
     clone_ohmyzsh
     clone_dotfiles
     copy_dotfiles
@@ -115,6 +121,12 @@ activate_zsh() {
 
     echo "ZSH Config is successfully installed!"
     echo "Log out and log in again to start using this config"
+}
+
+need() {
+    if ! command -v "$1" > /dev/null 2>&1; then
+        die "need '$1' (command not found)"
+    fi
 }
 
 git_repo() {
