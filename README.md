@@ -25,5 +25,5 @@ To set custom (i.e., user- or machine-specific) environment variables or to over
 Run the following command in your terminal to install:
 
 ``` bash
-$ curl -sSf https://raw.githubusercontent.com/mgarciadelojo/dotfiles/master/install.sh | sh
+$ bash <(curl -sSf https://raw.githubusercontent.com/mgarciadelojo/dotfiles/master/install.sh)
 ```
