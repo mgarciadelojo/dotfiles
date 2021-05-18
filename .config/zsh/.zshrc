@@ -21,6 +21,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Custom env variables
+[[ -f $ZDOTDIR/custom.zshenv ]] && source $ZDOTDIR/custom.zshenv
+
 # Node Version Manager
 export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
