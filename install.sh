@@ -4,19 +4,13 @@ XDG_CONFIG_HOME=$HOME/.config
 XDG_DATA_HOME=$HOME/.local/share
 XDG_CACHE_HOME=$HOME/.cache
 
+mkdir -p $XDG_CONFIG_HOME
+mkdir -p $XDG_DATA_HOME
+mkdir -p $XDG_CACHE_HOME
+
 ZDOTDIR=$XDG_CONFIG_HOME/zsh
 ZSH=$XDG_DATA_HOME/oh-my-zsh
 ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
-
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	do_it
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo ""
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		do_it
-	fi
-fi
 
 do_it() {
     clone_ohmyzsh
@@ -77,9 +71,12 @@ install_common_dependencies() {
     if git_repo "$NVM_DIR"; then
         echo "Already a git repository: '$NVM_DIR'"
     else
-        ensure git clone --quiet https://github.com/nvm-sh/nvm.git $NVM_DIR
-        ensure latesttag=$(git describe --tags --git-dir=$NVM_DIR)
-        ensure git checkout ${latesttag} --git-dir=$NVM_DIR
+        pwd=$(pwd)
+        ensure git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
+        cd $NVM_DIR
+        latesttag=$(git describe --tags)
+        ensure git checkout ${latesttag}
+        cd $pwd
 
         echo "NVM ${latesttag} installed!"
     fi
@@ -87,22 +84,10 @@ install_common_dependencies() {
     if git_repo "$GVM_DIR"; then
         echo "Already a git repository: '$GVM_DIR'"
     else
-        ensure git clone --quiet https://github.com/nvm-sh/nvm.git $GVM_DIR
+        ensure git clone https://github.com/nvm-sh/nvm.git $GVM_DIR
 
         echo "GVM installed!"
     fi
-
-
-
-
-    echo "Installing NVM ${latesttag}"
-
-    git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-    latesttag=$(git describe --tags --git-dir=$NVM_DIR)
-    git checkout ${latesttag}
-    echo "Installing NVM ${latesttag}"
-
-
 }
 
 change_to_zsh() {
@@ -140,3 +125,13 @@ as_root() {
         "$@"
     fi
 }
+
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+	do_it
+else
+	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	echo ""
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		do_it
+	fi
+fi
