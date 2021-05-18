@@ -1,7 +1,7 @@
-# dotfiles
+# DotFiles
 My personal dotfiles for Ubuntu and MacOS
 
-# Getting started
+## Getting started
 
 The configuration is based on the following assumptions:
 
@@ -17,11 +17,11 @@ The configuration is based on the following assumptions:
 * Oh My Zsh files located under `$ZSH`.
 * `~/.zshenv` is a symbolic link pointing to `$ZDOTDIR/.zshenv`.
 
-## Custom environment variables
+### Custom environment variables
 
 To set custom (i.e., user- or machine-specific) environment variables or to override the defaults, use the file `$ZDOTDIR/custom.env`.
 
-# Install
+## Install
 Run the following command in your terminal to install:
 
 ``` bash
