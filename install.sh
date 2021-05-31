@@ -17,6 +17,7 @@ do_it() {
     echo "Checking all the requirements are met..."
     need git
     need zsh
+    need make
     need mkdir
     need chsh
     need ln
@@ -94,6 +95,7 @@ install_common_dependencies() {
     echo "Installing Common Dependencies..."
 
     NVM_DIR=$XDG_CONFIG_HOME/.nvm
+    GVM_DIR=$XDG_CONFIG_HOME/.gvm
 
     if git_repo "$NVM_DIR"; then
         echo "Already a git repository: '$NVM_DIR'"
@@ -111,8 +113,7 @@ install_common_dependencies() {
     if directory_exists "$GVM_DIR"; then
         echo "Already installed: '$GVM_DIR'"
     else
-        export GVM_DEST=$GVM_DIR
-        bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+        curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -s "master" "$GVM_DIR"
 
         echo "GVM installed!"
     fi
