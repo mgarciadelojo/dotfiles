@@ -109,10 +109,11 @@ install_common_dependencies() {
         echo "NVM ${latesttag} installed!"
     fi
 
-    if git_repo "$GVM_DIR"; then
-        echo "Already a git repository: '$GVM_DIR'"
+    if directory_exists "$GVM_DIR"; then
+        echo "Already installed: '$GVM_DIR'"
     else
-        ensure git clone https://github.com/nvm-sh/nvm.git $GVM_DIR
+        export GVM_DEST=$GVM_DIR
+        bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
         echo "GVM installed!"
     fi
@@ -140,6 +141,10 @@ need() {
 
 git_repo() {
     [ -d "$1/.git" ]
+}
+
+directory_exists() {
+    [ -d "$1" ]
 }
 
 not_linked() {
