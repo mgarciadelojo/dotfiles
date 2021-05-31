@@ -11,7 +11,7 @@ mkdir -p $XDG_CACHE_HOME
 ZDOTDIR=$XDG_CONFIG_HOME/.zsh
 ZSH=$XDG_DATA_HOME/oh-my-zsh
 DOTFILES=$XDG_DATA_HOME/dotfiles
-ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
+ZSH_CACHE_DIR=$XDG_CACHE_HOME/.zsh
 
 do_it() {
     echo "Checking all the requirements are met..."
@@ -94,7 +94,6 @@ install_common_dependencies() {
     echo "Installing Common Dependencies..."
 
     NVM_DIR=$XDG_CONFIG_HOME/.nvm
-    GVM_DIR=$XDG_CONFIG_HOME/.gvm
 
     if git_repo "$NVM_DIR"; then
         echo "Already a git repository: '$NVM_DIR'"

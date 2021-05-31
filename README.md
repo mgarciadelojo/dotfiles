@@ -19,7 +19,7 @@ The configuration is based on the following assumptions:
 
 ### Custom environment variables
 
-To set custom (i.e., user- or machine-specific) environment variables or to override the defaults, use the file `$ZDOTDIR/custom.env`.
+To set custom (i.e., user- or machine-specific) environment variables or to override the defaults, use the file `$ZDOTDIR/custom.zshenv`.
 
 ## Install
 Run the following command in your terminal to install:
