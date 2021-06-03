@@ -18,7 +18,6 @@ do_it() {
     need git
     need zsh
     need make
-    need binutils
     need bison
     need gcc
     need mkdir
